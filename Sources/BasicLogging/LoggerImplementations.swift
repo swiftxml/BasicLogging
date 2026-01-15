@@ -19,10 +19,8 @@ public class CollectingLogger<Message: Sendable & CustomStringConvertible,Mode: 
     /// Get all collected message events.
     public func getMessages() -> [Message] {
         var messages: [Message]? = nil
-        group.enter()
         self.queue.sync {
             messages = self.messages
-            self.group.leave()
         }
         return messages!
     }
